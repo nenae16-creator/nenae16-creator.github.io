@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="theme-color" content="#245EEA"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<title>흥타령 AI FLOW</title>
+<style>
+:root{--bg:#F4F7FF;--card:#fff;--line:#D7E0F2;--ink:#16244B;--muted:#3D4A6B;--blue:#245EEA;--violet:#6548E8;--warn:#F5B942;--bad:#FF5C7A;--ok:#2DD4BF}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",-apple-system,sans-serif}
+body{min-height:100dvh;padding-bottom:calc(88px + env(safe-area-inset-bottom))}
+button,input{font:inherit;color:inherit;border:0}
+.top{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:calc(10px + env(safe-area-inset-top)) 16px 12px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line)}
+.brand{display:flex;gap:10px;align-items:center}
+.logo{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;color:#fff;font-weight:800;background:linear-gradient(135deg,#176EF2,#6548E8)}
+.brand b{display:block;font-size:16px}.brand small{display:block;color:var(--muted);font-size:13px}
+.role{display:flex;background:#EDF2FF;border-radius:999px;padding:3px}
+.role button{min-height:44px;padding:0 14px;border-radius:999px;background:0;color:var(--muted);font-weight:700;font-size:16px}
+.role button.on{background:var(--blue);color:#fff}
+main{max-width:430px;margin:0 auto;padding:16px}
+.screen{display:none}.screen.on{display:block}
+.hero{background:linear-gradient(125deg,#174FCF 0%,#285FE4 45%,#7742DA 100%);color:#fff;border-radius:24px;padding:18px;margin-bottom:12px}
+.kicker{font-size:12px;letter-spacing:.08em;font-weight:700;color:#E8EEFF}
+.hero h1{margin:8px 0;font-size:28px}.hero h1 em{font-style:normal;color:#E8EEFF}
+.hero p{margin:0;font-size:16px;line-height:1.5;color:#EEF2FF}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.pills span{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.16);font-size:14px}
+.chips{display:flex;gap:8px;overflow:auto;padding:4px 0 12px}
+.chips button,.seg button{min-height:48px;padding:0 16px;border-radius:999px;background:#fff;border:1px solid var(--line);font-weight:700;font-size:16px;white-space:nowrap}
+.chips button.on,.seg button.on{background:var(--violet);color:#fff;border-color:transparent}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;margin-top:10px}
+h1{font-size:26px;margin:0 0 8px} h2{font-size:18px;margin:0 0 6px}
+.lead{color:var(--muted);font-size:16px;line-height:1.5;margin:0 0 12px}
+.tag{display:inline-block;padding:3px 8px;border-radius:999px;font-size:12px;font-weight:800}
+.meas{background:#E7F6F1;color:#177968}.scen{background:#FFF2E3;color:#A85B28}
+.gauge{width:110px;height:110px;margin:8px auto}
+.g-label{text-align:center;font-weight:800;font-size:16px}.g-note{text-align:center;color:var(--muted);font-size:14px}
+.warn{margin-top:12px;padding:12px;border-radius:16px;background:#FFF6E8;border:1px solid #F3D3B1;color:#8A5A20;font-size:16px;line-height:1.5}
+.row{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.t{width:52px;color:var(--violet);font-weight:800;font-size:15px}
+.row strong{display:block;font-size:17px}.row small{display:block;margin-top:3px;color:var(--muted);font-size:15px}
+.bar{height:8px;background:#E6ECF8;border-radius:99px;overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%}
+.map{height:240px;border-radius:20px;position:relative;background:linear-gradient(180deg,#E8EEFF,#F7F9FF);border:1px solid var(--line)}
+.pin{position:absolute;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px;min-width:120px;box-shadow:0 8px 18px rgba(36,71,143,.12)}
+.pin b,.pin span{display:block} .pin span{color:var(--muted);font-size:13px;margin-top:3px}
+.primary{width:100%;min-height:48px;margin-top:12px;border-radius:16px;background:linear-gradient(135deg,#255FE5,#6847DF);color:#fff;font-weight:800;font-size:16px}
+.search{width:100%;min-height:48px;border-radius:14px;border:1px solid var(--line);padding:0 12px;font-size:16px;background:#fff;margin:8px 0}
+.bottom{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-around;padding:8px 8px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--line)}
+.bottom button{background:0;color:var(--muted);min-height:48px;font-weight:700;font-size:16px}
+.bottom button.on{color:var(--blue)}
+.note{margin-top:12px;padding:12px;border-radius:16px;background:#F8FAFF;border:1px solid var(--line);color:var(--muted);font-size:16px;display:none}
+.ops{display:none} body.ops .ops{display:block}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand"><div class="logo">AI</div><div><b>흥타령 AI FLOW</b><small>수요 분산 운영 엔진</small></div></div>
+  <div class="role"><button id="v" class="on" onclick="role('v')">시민</button><button id="a" onclick="role('a')">운영</button></div>
+</header>
+<main>
+<section id="home" class="screen on">
+  <div class="hero">
+    <div class="kicker">CHEONAN WORLD DANCE FESTIVAL</div>
+    <h1>흥타령 <em>AI FLOW</em></h1>
+    <p>두 행사장 접근 부하를 보고, 덜 붔비는 동선과 동남 상권으로 수요를 나눔니다.</p>
+    <div class="pills"><span>data_as_of 2025-09-28 16:00</span><span>confidence 보통</span><span>WAPE 9.29%</span></div>
+  </div>
+  <div class="chips" id="hz"></div>
+  <div class="pair" id="gg"></div>
+  <div class="card"><h2>연결 교통축</h2><p class="lead">종합운동장과 삼거리공원을 잇는 차량 접근 부하</p><div id="cr"></div></div>
+  <div class="warn">행사인원·주차 점유가 아닙니다. 교차로 차량 통과량 상대 지수입니다. 30분 값은 보간, 삼거리공원은 시나리오입니다.</div>
+</section>
+<section id="map" class="screen">
+  <h1>행사장 지도</h1>
+  <p class="lead">실시간 위치가 아닙니다. 이원 행사장 관계를 보는 안내 도판입니다.</p>
+  <div class="map">
+    <div class="pin" style="left:8%;top:16%"><b>종합운동장</b><span id="ps">서북권 주 행사장</span></div>
+    <div class="pin" style="right:8%;bottom:16%"><b>삼거리공원</b><span id="pg">동남권 분산 · 시나리오</span></div>
+  </div>
+</section>
+<section id="route" class="screen">
+  <h1>추천 동선</h1>
+  <p class="lead">GPS는 버튼을 누른 뒤에만 요청하고 저장하지 않습니다.</p>
+  <div class="chips" id="md"></div>
+  <div class="card" id="st"></div>
+  <button class="primary" onclick="gps()">GPS 연결 · 저장하지 않음</button>
+  <p id="go" class="note"></p>
+</section>
+<section id="more" class="screen">
+  <h1>일정 · 부스</h1>
+  <p class="lead">2025 공식 가이드 참고입니다. 2026 최종 일정이 아닙니다.</p>
+  <div class="seg chips" id="dt"></div>
+  <div class="card" id="ev"></div>
+  <input class="search" id="q" placeholder="부스명 · 운영 · 구역" oninput="booths()"/>
+  <div class="card" id="bs"></div>
+  <div class="card ops"><h2>운영 권고</h2><p class="lead">자동 행정조치가 아닙니다.</p>
+    <div class="row"><div><strong>삼거리공원 프로그램 안내 강화</strong><small>30분 후 종합운동장 부하 상승 예상</small></div></div>
+    <div class="row"><div><strong>동남권 주차 유도 문구 검토</strong><small>연결축 부하 상승 패턴</small></div></div>
+  </div>
+</section>
+</main>
+<nav class="bottom">
+  <button class="on" data-t="home" onclick="go('home')">홈</button>
+  <button data-t="map" onclick="go('map')">지도</button>
+  <button data-t="route" onclick="go('route')">동선</button>
+  <button data-t="more" onclick="go('more')">더보기</button>
+</nav>
+<script>
+const EV=[{d:'09-24',s:'19:00',v:'주무대',n:'개막식'},{d:'09-25',s:'19:00',v:'주무대',n:'대민국 무용대상'},{d:'09-26',s:'19:00',v:'신부동',n:'거리댓스 퍼레이드'},{d:'09-26',s:'19:00',v:'주무대',n:'전국대학 무용경연대회 결선'},{d:'09-28',s:'20:30',v:'주무대',n:'시상식 & 폐막식'}];
+const BO=[{z:'춤한마당',n:'캐리커처',o:'월드아트'},{z:'춤한마당',n:'흥이춤이 홍보관',o:'두잉'},{z:'흥한마당',n:'종합안내소',o:'운영본부'},{z:'춤한마당',n:'아우내빈대떡',o:'지역먹거리'},{z:'흥한마당',n:'분실물·미아신고',o:'운영본부'}];
+const L={'지금':{s:70,g:53,c:61},'30분 후':{s:73,g:62,c:69},'60분 후':{s:76,g:48,c:58}};
+const R={'아이 동반':[['16:20','가족체험존','실내·휴식 좌석 인접'],['17:05','동남 상권','부하 전 이동'],['18:10','메인 공연','피크 회피']],'보행 짧게':[['16:20','가까운 휴식','최단 보행'],['16:50','근거리 식음','체류 우선'],['17:30','보조 공연','짧은 이동']],'공연 중심':[['16:20','국제춤대회','보조무대'],['17:10','이동·휴식','피크 우회'],['18:00','메인 공연','완화 구간']]};
+let hz='지금',md='아이 동반',date='09-24';
+function tone(v){return v>=75?'var(--bad)':v>=55?'var(--warn)':'var(--ok)'}
+function lab(v){return v>=75?'높음':v>=55?'보통':'여유'}
+function ring(v,col){const r=42,c=2*Math.PI*r;return `<svg viewBox="0 0 100 100" style="transform:rotate(-90deg)"><circle cx="50" cy="50" r="${r}" fill="none" stroke="#E6ECF8" stroke-width="10"/><circle cx="50" cy="50" r="${r}" fill="none" stroke="${col}" stroke-width="10" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${c*(1-v/100)}"/><text x="50" y="46" fill="#16244B" font-size="22" font-weight="800" text-anchor="middle" transform="rotate(90 50 50)">${v}</text><text x="50" y="64" fill="#3D4A6B" font-size="10" text-anchor="middle" transform="rotate(90 50 50)">${lab(v)}</text></svg>`}
+function role(x){document.body.classList.toggle('ops',x==='a');v.className=x==='v'?'on':'';a.className=x==='a'?'on':''}
+function go(id){document.querySelectorAll('.screen').forEach(el=>el.classList.toggle('on',el.id===id));document.querySelectorAll('.bottom button').forEach(el=>el.classList.toggle('on',el.dataset.t===id));window.scrollTo({top:0,behavior:'smooth'})}
+function render(){
+  const x=L[hz];
+  document.getElementById('hz').innerHTML=Object.keys(L).map(k=>`<button class="${k===hz?'on':''}" onclick="hz='${k}';render()">${k==='30분 후'?'30분 후*':k}</button>`).join('');
+  document.getElementById('gg').innerHTML=`<div class="card" style="text-align:center"><span class="tag meas">교차로 실데이터</span><div class="gauge">${ring(x.s,tone(x.s))}</div><div class="g-label">천안종합운동장</div><div class="g-note">서북권 주 행사장</div></div><div class="card" style="text-align:center"><span class="tag scen">시나리오</span><div class="gauge">${ring(x.g,tone(x.g))}</div><div class="g-label">천안삼거리공원</div><div class="g-note">동남권 분산</div></div>`;
+  document.getElementById('cr').innerHTML=`<div class="row"><div style="flex:1"><strong>접근 부하 ${x.c}점</strong><small>${lab(x.c)} · 차량 통과량 상대 지수</small><div class="bar"><i style="width:${x.c}%;background:${tone(x.c)}"></i></div></div></div>`;
+  document.getElementById('ps').textContent='서북권 · '+lab(x.s)+' '+x.s;
+  document.getElementById('pg').textContent='동남권 · '+lab(x.g)+' '+x.g;
+  document.getElementById('md').innerHTML=Object.keys(R).map(k=>`<button class="${k===md?'on':''}" onclick="md='${k}';render()">${k}</button>`).join('');
+  document.getElementById('st').innerHTML=R[md].map((t,i)=>`<div class="row"><div class="t">${i+1} ${t[0]}</div><div><strong>${t[1]}</strong><small>${t[2]}</small></div></div>`).join('');
+  const ds=[...new Set(EV.map(e=>e.d))];
+  document.getElementById('dt').innerHTML=ds.map(z=>`<button class="${z===date?'on':''}" onclick="date='${z}';render()">${z.slice(3)}일</button>`).join('');
+  document.getElementById('ev').innerHTML=EV.filter(z=>z.d===date).map(z=>`<div class="row"><div class="t">${z.s}</div><div><strong>${z.n}</strong><small>${z.v} · 2025 참고</small></div></div>`).join('');
+  booths();
+}
+function booths(){const q=(document.getElementById('q').value||'').toLowerCase();const f=BO.filter(z=>!q||(z.n+z.o+z.z).toLowerCase().includes(q));document.getElementById('bs').innerHTML=f.map(z=>`<div class="row"><div><strong>${z.n}</strong><small>${z.z} · ${z.o}</small></div></div>`).join('')||'<p class="lead">검색 결과가 없습니다.</p>'}
+function gps(){const o=document.getElementById('go');o.style.display='block';if(!navigator.geolocation){o.textContent='위치 미지원';return}o.textContent='위치 확인 중… 저장하지 않습니다.';navigator.geolocation.getCurrentPosition(p=>{const S={lat:36.818921,lng:127.115092},G={lat:36.7854391,lng:127.1665027};const km=(a,b)=>{const R=6371,dLat=(b.lat-a.lat)*Math.PI/180,dLng=(b.lng-a.lng)*Math.PI/180,x=Math.sin(dLat/2)**2+Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(dLng/2)**2;return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x))};const here={lat:p.coords.latitude,lng:p.coords.longitude};const ds=km(here,S),dg=km(here,G);o.textContent='연결됨 · '+(ds<=dg?'종합운동장':'삼거리공원')+'까지 직선 '+Math.min(ds,dg).toFixed(1)+'km · 서버에 보내지 않습니다.';},()=>o.textContent='위치 권한이 필요합니다.')}
+render();
+</script>
+</body></html>
