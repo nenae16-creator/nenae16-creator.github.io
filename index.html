@@ -10,23 +10,23 @@
 :root{--bg:#F4F7FF;--card:#fff;--line:#D7E0F2;--ink:#16244B;--muted:#3D4A6B;--blue:#245EEA;--violet:#6548E8;--warn:#F5B942;--bad:#FF5C7A;--ok:#2DD4BF}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",-apple-system,sans-serif}
-body{min-height:100dvh;padding-bottom:calc(88px + env(safe-area-inset-bottom))}
+body{min-height:100dvh;padding-bottom:calc(96px + env(safe-area-inset-bottom))}
 button,input{font:inherit;color:inherit;border:0}
 .top{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:calc(10px + env(safe-area-inset-top)) 16px 12px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line)}
-.brand{display:flex;gap:10px;align-items:center}
+.brand{display:flex;gap:10px;align-items:center;min-width:0}
 .logo{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;color:#fff;font-weight:800;background:linear-gradient(135deg,#176EF2,#6548E8)}
 .brand b{display:block;font-size:16px}.brand small{display:block;color:var(--muted);font-size:13px}
-.role{display:flex;background:#EDF2FF;border-radius:999px;padding:3px}
-.role button{min-height:44px;padding:0 14px;border-radius:999px;background:0;color:var(--muted);font-weight:700;font-size:16px}
+.role{display:flex;background:#EDF2FF;border-radius:999px;padding:3px;flex:none}
+.role button{min-height:48px;padding:0 14px;border-radius:999px;background:0;color:var(--muted);font-weight:700;font-size:16px}
 .role button.on{background:var(--blue);color:#fff}
 main{max-width:430px;margin:0 auto;padding:16px}
 .screen{display:none}.screen.on{display:block}
 .hero{background:linear-gradient(125deg,#174FCF 0%,#285FE4 45%,#7742DA 100%);color:#fff;border-radius:24px;padding:18px;margin-bottom:12px}
 .kicker{font-size:12px;letter-spacing:.08em;font-weight:700;color:#E8EEFF}
 .hero h1{margin:8px 0;font-size:28px}.hero h1 em{font-style:normal;color:#E8EEFF}
-.hero p{margin:0;font-size:16px;line-height:1.5;color:#EEF2FF}
+.hero p{margin:0;font-size:18px;line-height:1.55;color:#EEF2FF}
 .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.pills span{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.16);font-size:14px}
+.pills span{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.16);font-size:16px}
 .chips{display:flex;gap:8px;overflow:auto;padding:4px 0 12px}
 .chips button,.seg button{min-height:48px;padding:0 16px;border-radius:999px;background:#fff;border:1px solid var(--line);font-weight:700;font-size:16px;white-space:nowrap}
 .chips button.on,.seg button.on{background:var(--violet);color:#fff;border-color:transparent}
@@ -37,7 +37,7 @@ h1{font-size:26px;margin:0 0 8px} h2{font-size:18px;margin:0 0 6px}
 .tag{display:inline-block;padding:3px 8px;border-radius:999px;font-size:12px;font-weight:800}
 .meas{background:#E7F6F1;color:#177968}.scen{background:#FFF2E3;color:#A85B28}
 .gauge{width:110px;height:110px;margin:8px auto}
-.g-label{text-align:center;font-weight:800;font-size:16px}.g-note{text-align:center;color:var(--muted);font-size:14px}
+.g-label{text-align:center;font-weight:800;font-size:16px}.g-note{text-align:center;color:var(--muted);font-size:16px}
 .warn{margin-top:12px;padding:12px;border-radius:16px;background:#FFF6E8;border:1px solid #F3D3B1;color:#8A5A20;font-size:16px;line-height:1.5}
 .row{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
 .row:last-child{border-bottom:0}
@@ -50,7 +50,7 @@ h1{font-size:26px;margin:0 0 8px} h2{font-size:18px;margin:0 0 6px}
 .pin b,.pin span{display:block} .pin span{color:var(--muted);font-size:13px;margin-top:3px}
 .primary{width:100%;min-height:48px;margin-top:12px;border-radius:16px;background:linear-gradient(135deg,#255FE5,#6847DF);color:#fff;font-weight:800;font-size:16px}
 .search{width:100%;min-height:48px;border-radius:14px;border:1px solid var(--line);padding:0 12px;font-size:16px;background:#fff;margin:8px 0}
-.bottom{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-around;padding:8px 8px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--line)}
+.bottom{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;justify-content:space-around;padding:8px 8px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--line)}
 .bottom button{background:0;color:var(--muted);min-height:48px;font-weight:700;font-size:16px}
 .bottom button.on{color:var(--blue)}
 .note{margin-top:12px;padding:12px;border-radius:16px;background:#F8FAFF;border:1px solid var(--line);color:var(--muted);font-size:16px;display:none}
@@ -67,7 +67,7 @@ h1{font-size:26px;margin:0 0 8px} h2{font-size:18px;margin:0 0 6px}
   <div class="hero">
     <div class="kicker">CHEONAN WORLD DANCE FESTIVAL</div>
     <h1>흥타령 <em>AI FLOW</em></h1>
-    <p>두 행사장 접근 부하를 보고, 덜 붔비는 동선과 동남 상권으로 수요를 나눔니다.</p>
+    <p>두 행사장 접근 부하를 보고, 덜 붔비는 동선과 동남 상권으로 수요를 나눍니다.</p>
     <div class="pills"><span>data_as_of 2025-09-28 16:00</span><span>confidence 보통</span><span>WAPE 9.29%</span></div>
   </div>
   <div class="chips" id="hz"></div>
@@ -111,7 +111,7 @@ h1{font-size:26px;margin:0 0 8px} h2{font-size:18px;margin:0 0 6px}
   <button data-t="more" onclick="go('more')">더보기</button>
 </nav>
 <script>
-const EV=[{d:'09-24',s:'19:00',v:'주무대',n:'개막식'},{d:'09-25',s:'19:00',v:'주무대',n:'대민국 무용대상'},{d:'09-26',s:'19:00',v:'신부동',n:'거리댓스 퍼레이드'},{d:'09-26',s:'19:00',v:'주무대',n:'전국대학 무용경연대회 결선'},{d:'09-28',s:'20:30',v:'주무대',n:'시상식 & 폐막식'}];
+const EV=[{d:'09-24',s:'19:00',v:'주무대',n:'개막식'},{d:'09-25',s:'19:00',v:'주무대',n:'대한민국 무용대상'},{d:'09-26',s:'19:00',v:'신부동',n:'거리덌스 퍼레이드'},{d:'09-26',s:'19:00',v:'주무대',n:'전국대학 무용경연대회 결선'},{d:'09-28',s:'20:30',v:'주무대',n:'시상식 & 폐막식'}];
 const BO=[{z:'춤한마당',n:'캐리커처',o:'월드아트'},{z:'춤한마당',n:'흥이춤이 홍보관',o:'두잉'},{z:'흥한마당',n:'종합안내소',o:'운영본부'},{z:'춤한마당',n:'아우내빈대떡',o:'지역먹거리'},{z:'흥한마당',n:'분실물·미아신고',o:'운영본부'}];
 const L={'지금':{s:70,g:53,c:61},'30분 후':{s:73,g:62,c:69},'60분 후':{s:76,g:48,c:58}};
 const R={'아이 동반':[['16:20','가족체험존','실내·휴식 좌석 인접'],['17:05','동남 상권','부하 전 이동'],['18:10','메인 공연','피크 회피']],'보행 짧게':[['16:20','가까운 휴식','최단 보행'],['16:50','근거리 식음','체류 우선'],['17:30','보조 공연','짧은 이동']],'공연 중심':[['16:20','국제춤대회','보조무대'],['17:10','이동·휴식','피크 우회'],['18:00','메인 공연','완화 구간']]};
