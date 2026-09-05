@@ -31,6 +31,7 @@
     var BASE = "https://raw.githubusercontent.com/nenae16-creator/nenae16-creator.github.io/main/inline/";
     var a = await firstOk([BASE + "app.p1.js", "app.p1.js"]);
     var b = await firstOk([BASE + "app.p2.js", "app.p2.js"]);
+    b = b.replace('row.status||""]);}));', 'row.status||""]);}));');
     eval(a + b);
   } catch (e) {
     show("앱 코드를 불러오지 못했습니다");
