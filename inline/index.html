@@ -2,11 +2,13 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#071525">
+  <meta name="apple-mobile-web-app-capable" content="yes">
   <title>2026 천안시체육회장배 인라인 스피드대회</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nenae16-creator/cheonan-inline-2026@main/app.css">
+  <link rel="stylesheet" href="app.css">
 </head>
 <body>
   <header class="app-header">
@@ -15,14 +17,29 @@
         <div class="logo">IN</div>
         <div>
           <h1>2026 천안시체육회장배 인라인 스피드대회</h1>
-          <p>2026.06.07(일) 오전 9시 · <span id="updated">로딩 중</span></p>
+          <p>2026.06.07(일) 오전 9시 · <span id="updated">기록 입력 전</span></p>
         </div>
       </div>
-      <div class="live-pill"><span class="dot"></span> LIVE <span id="clock"></span></div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <div id="share-box"><button class="btn gold" id="start-share">공개 공유 시작</button></div>
+        <div class="live-pill"><span class="dot"></span> LIVE <span id="clock"></span></div>
+      </div>
     </div>
+    <nav class="nav">
+      <button data-view="board" class="active">전광판</button>
+      <button data-view="pair">페어링</button>
+      <button data-view="rank">순위</button>
+      <button data-view="champ">최강전</button>
+      <button data-view="medals">클럽 메달</button>
+      <button data-view="athletes">선수·사진</button>
+      <button data-view="judge">심판실</button>
+    </nav>
   </header>
   <main class="wrap" id="view"></main>
+  <div class="modal-bg" id="modal"></div>
+  <div class="toast" id="toast"></div>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-  <script src="boot.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
