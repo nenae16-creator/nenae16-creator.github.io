@@ -18,9 +18,14 @@
     throw last || new Error("all failed");
   }
   try {
-    var RAW = "https://cdn.jsdelivr.net/gh/nenae16-creator/cheonan-inline-2026@main/";
-    var da = await firstOk([RAW + "data.p1.txt", "https://raw.githubusercontent.com/nenae16-creator/cheonan-inline-2026/main/data.p1.txt"]);
-    var db = await firstOk([RAW + "data.p2.txt", "https://raw.githubusercontent.com/nenae16-creator/cheonan-inline-2026/main/data.p2.txt"]);
+    var da = await firstOk([
+      "https://cdn.jsdelivr.net/gh/nenae16-creator/cheonan-inline-2026@main/data.p1.txt",
+      "https://raw.githubusercontent.com/nenae16-creator/cheonan-inline-2026/main/data.p1.txt"
+    ]);
+    var db = await firstOk([
+      "https://cdn.jsdelivr.net/gh/nenae16-creator/cheonan-inline-2026@main/data.p2.txt",
+      "https://raw.githubusercontent.com/nenae16-creator/cheonan-inline-2026/main/data.p2.txt"
+    ]);
     eval(da + db);
     if (!window.MEET_DATA) throw new Error("no data");
   } catch (e) {
@@ -31,7 +36,7 @@
     var BASE = "https://raw.githubusercontent.com/nenae16-creator/nenae16-creator.github.io/main/inline/";
     var a = await firstOk([BASE + "app.p1.js", "app.p1.js"]);
     var b = await firstOk([BASE + "app.p2.js", "app.p2.js"]);
-    b = b.replace('row.status||""]);}));', 'row.status||""]);}));');
+    b = b.split('row.status||""]);}));').join('row.status||"");}));');
     eval(a + b);
   } catch (e) {
     show("앱 코드를 불러오지 못했습니다");
